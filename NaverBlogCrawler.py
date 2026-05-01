@@ -4,8 +4,8 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from webdriver_manager.chrome import ChromeDriverManager
 import time
-import requests
-import os
+import json
+from datetime import datetime
 
 # ==========================================
 # 1. 크롬 브라우저 세팅 (headless 모드)
@@ -30,15 +30,15 @@ print("✅ 게시판 접속 완료! 데이터를 읽어옵니다...")
 time.sleep(3)
 
 # ==========================================
-# 3. 데이터 추출 (브라우저 열린 상태에서!)
+# 3. 데이터 추출
 # ==========================================
 articles = driver.find_elements(By.CSS_SELECTOR, "a.article")
 
-results = []  # 데이터를 여기에 저장
+results = []
 
 if articles:
     print(f"🎉 총 {len(articles)}개의 최신 글을 찾았습니다!")
-    for article in articles[:5]:
+    for article in articles:
         title = article.text.strip()
         link = article.get_attribute("href")
 
@@ -54,31 +54,26 @@ if articles:
         except:
             date = "알 수 없음"
 
-        results.append({"title": title, "author": author, "date": date, "link": link})
+        results.append({
+            "title": title,
+            "author": author,
+            "date": date,
+            "link": link
+        })
 
-# ⭐ 모든 데이터 다 읽은 후에 브라우저 종료
 driver.quit()
 print("✅ 브라우저 종료 완료")
 
 # ==========================================
-# 4. 디스코드 웹훅으로 전송
+# 4. JSON 파일로 저장
 # ==========================================
-DISCORD_WEBHOOK_URL = os.environ.get("DISCORD_WEBHOOK_URL")
+output = {
+    "updated_at": datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ"),  # 마지막 크롤링 시각
+    "total": len(results),
+    "articles": results
+}
 
-def send_discord(message):
-    payload = {"content": message}
-    requests.post(DISCORD_WEBHOOK_URL, json=payload)
+with open("articles.json", "w", encoding="utf-8") as f:
+    json.dump(output, f, ensure_ascii=False, indent=2)
 
-if not results:
-    send_discord("🤔 글 목록을 찾지 못했습니다.")
-else:
-    send_discord(f"📋 **네이버 카페 최신글 알림** (총 5개)\n{'='*30}")
-    for item in results:
-        message = (
-            f"📌 **{item['title']}**\n"
-            f"👤 작성자: {item['author']}　📅 날짜: {item['date']}\n"
-            f"🔗 {item['link']}"
-        )
-        send_discord(message)
-        print(f"전송 완료: {item['title']}")
-        time.sleep(0.5)
+print(f"✅ articles.json 저장 완료 ({len(results)}개)")
