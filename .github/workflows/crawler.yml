@@ -1,0 +1,30 @@
+name: Naver Cafe Crawler
+
+on:
+  schedule:
+    - cron: '*/30 * * * *'  # 30분마다 실행
+  workflow_dispatch:         # 수동 실행 버튼도 활성화
+
+jobs:
+  crawl:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Python 설치
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Chrome 설치
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y google-chrome-stable
+
+      - name: 라이브러리 설치
+        run: pip install selenium webdriver-manager requests
+
+      - name: 크롤러 실행
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+        run: python NaverBlogCrawler.py
