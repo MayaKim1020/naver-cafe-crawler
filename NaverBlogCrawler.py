@@ -32,8 +32,10 @@ CATEGORY_RULES = [
 ]
 GUIDE_KEYWORDS = ["안내", "홍보", "행사"]
 
-def classify(title):
-    """제목으로 카테고리 분류 (공지 여부와 무관)"""
+def classify(title, is_notice):
+    """제목과 공지 여부로 카테고리 분류"""
+    if is_notice:
+        return "공지글"
     for category, keywords in CATEGORY_RULES:
         for keyword in keywords:
             if keyword in title:
@@ -61,13 +63,9 @@ def send_discord_notification(article, category):
         print("⚠️ DISCORD_WEBHOOK_URL이 설정되지 않아 알림 생략")
         return
 
-    # 전체공지면 카테고리 앞에 [공지] 표시 + 제목 앞에 📢 추가
-    notice_tag = "📢[공지] " if article.get("is_notice") else ""
-    category_label = f"[공지·{category}]" if article.get("is_notice") else f"[{category}]"
-
     message = (
-        f"🆕 **새 글 알림** {category_label}\n"
-        f"📌 **{notice_tag}{article['title']}**\n"
+        f"🆕 **새 글 알림** [{category}]\n"
+        f"📌 **{article['title']}**\n"
         f"👤 작성자: {article['author']}　📅 날짜: {article['date']}\n"
         f"🔗 {article['link']}"
     )
@@ -113,6 +111,7 @@ TARGET_CLUB_ID = "22694512"
 TARGET_MENU_ID = "111"
 
 categorized = {
+    "공지글": [],
     "공모전": [],
     "신청글": [],
     "이벤트": [],
@@ -177,14 +176,13 @@ for page in range(1, MAX_PAGES + 1):
             should_stop = True
             break
 
-        category = classify(title)
+        category = classify(title, is_notice)
 
         article_data = {
             "title": title,
             "author": author,
             "date": date,
-            "link": link,
-            "is_notice": is_notice  # ⭐ 전체공지 여부 표시
+            "link": link
         }
 
         categorized[category].append(article_data)
