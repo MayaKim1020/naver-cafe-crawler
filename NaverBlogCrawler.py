@@ -5,6 +5,8 @@ from selenium.webdriver.common.by import By
 from webdriver_manager.chrome import ChromeDriverManager
 import time
 import json
+import os
+import requests
 from datetime import datetime
 
 # ==========================================
@@ -14,9 +16,10 @@ START_DATE = "2026.04.01."  # 이 날짜 이후 글만 수집 (포함)
 MAX_ARTICLES = 50           # 최대 수집 개수
 MAX_PAGES = 10              # 최대 탐색 페이지 (안전장치)
 
+DISCORD_WEBHOOK_URL = os.environ.get("DISCORD_WEBHOOK_URL")
+
 # ==========================================
 # 카테고리 분류 규칙 (위에서부터 우선순위)
-# 안내글은 최하위 → 다른 키워드가 하나도 없을 때만 분류
 # ==========================================
 CATEGORY_RULES = [
     ("공모전", ["공모전"]),
@@ -27,28 +30,21 @@ CATEGORY_RULES = [
     ]),
     ("이벤트", ["이벤트"]),
 ]
-GUIDE_KEYWORDS = ["안내", "홍보", "행사"]  # 홍보/안내 키워드 (최하위)
+GUIDE_KEYWORDS = ["안내", "홍보", "행사"]
 
 def classify(title, is_notice):
-    """제목과 공지 여부로 카테고리 분류"""
     if is_notice:
         return "공지글"
-
-    # 1순위: 신청글 / 공모전 / 이벤트 키워드 검사
     for category, keywords in CATEGORY_RULES:
         for keyword in keywords:
             if keyword in title:
                 return category
-
-    # 2순위 (최하위): 홍보/안내 - 위 키워드가 하나도 없을 때만 검사
     for keyword in GUIDE_KEYWORDS:
         if keyword in title:
             return "홍보/안내"
-
     return "기타"
 
 def parse_date(date_str):
-    """'2026.03.26.' 같은 문자열을 datetime으로 변환"""
     try:
         cleaned = date_str.strip().rstrip(".")
         return datetime.strptime(cleaned, "%Y.%m.%d")
@@ -56,6 +52,45 @@ def parse_date(date_str):
         return None
 
 START_DATETIME = parse_date(START_DATE)
+
+# ==========================================
+# 디스코드 알림 함수
+# ==========================================
+def send_discord_notification(article, category):
+    """새 글 알림을 디스코드로 전송"""
+    if not DISCORD_WEBHOOK_URL:
+        print("⚠️ DISCORD_WEBHOOK_URL이 설정되지 않아 알림 생략")
+        return
+
+    message = (
+        f"🆕 **새 글 알림** [{category}]\n"
+        f"📌 **{article['title']}**\n"
+        f"👤 작성자: {article['author']}　📅 날짜: {article['date']}\n"
+        f"🔗 {article['link']}"
+    )
+
+    try:
+        requests.post(DISCORD_WEBHOOK_URL, json={"content": message})
+        print(f"📬 디스코드 알림 전송: {article['title']}")
+    except Exception as e:
+        print(f"❌ 디스코드 전송 실패: {e}")
+
+# ==========================================
+# 이전 글 목록 불러오기 (link 집합)
+# ==========================================
+previous_links = set()
+if os.path.exists("articles.json"):
+    try:
+        with open("articles.json", "r", encoding="utf-8") as f:
+            prev_data = json.load(f)
+            for category_articles in prev_data.get("categories", {}).values():
+                for article in category_articles:
+                    previous_links.add(article["link"])
+        print(f"📂 이전 글 {len(previous_links)}개 로드 완료")
+    except Exception as e:
+        print(f"⚠️ 이전 글 로드 실패: {e}")
+else:
+    print("📂 이전 글 데이터 없음 (최초 실행)")
 
 # ==========================================
 # 1. 크롬 브라우저 세팅 (headless 모드)
@@ -74,7 +109,6 @@ driver = webdriver.Chrome(service=service, options=options)
 TARGET_CLUB_ID = "22694512"
 TARGET_MENU_ID = "111"
 
-# 카테고리별 dict
 categorized = {
     "공지글": [],
     "공모전": [],
@@ -84,8 +118,12 @@ categorized = {
     "기타": []
 }
 
+# 새 글들을 (article, category) 튜플 형태로 저장
+new_articles = []
+
 total_collected = 0
 should_stop = False
+is_first_run = (len(previous_links) == 0)  # 최초 실행 여부
 
 for page in range(1, MAX_PAGES + 1):
     if should_stop or total_collected >= MAX_ARTICLES:
@@ -125,37 +163,52 @@ for page in range(1, MAX_PAGES + 1):
         except:
             date = "알 수 없음"
 
-        # 전체공지 여부 (board-tag 클래스)
         try:
             row.find_element(By.CSS_SELECTOR, "em.board-tag")
             is_notice = True
         except:
             is_notice = False
 
-        # ⭐ 날짜 필터링 (전체공지는 날짜 무관하게 항상 포함)
         article_date = parse_date(date)
         if not is_notice and article_date and article_date < START_DATETIME:
-            # 일반 글이 기준일보다 오래됐으면 → 더 볼 필요 없음
             print(f"⏹️ 기준일({START_DATE})보다 오래된 글 발견, 수집 종료")
             should_stop = True
             break
 
-        # 카테고리 분류
         category = classify(title, is_notice)
 
-        categorized[category].append({
+        article_data = {
             "title": title,
             "author": author,
             "date": date,
             "link": link
-        })
+        }
+
+        categorized[category].append(article_data)
         total_collected += 1
+
+        # ⭐ 새 글 감지: 이전 목록에 없으면 새 글
+        if link not in previous_links:
+            new_articles.append((article_data, category))
 
 driver.quit()
 print(f"\n✅ 브라우저 종료 완료 (총 {total_collected}개 수집)")
 
 # ==========================================
-# 3. JSON 파일로 저장
+# 3. 새 글 알림 전송
+# ==========================================
+if is_first_run:
+    print(f"\n🔔 최초 실행이므로 알림은 보내지 않습니다 ({len(new_articles)}개 글 저장만)")
+elif new_articles:
+    print(f"\n🆕 새 글 {len(new_articles)}개 발견! 디스코드 알림 전송 중...")
+    for article_data, category in new_articles:
+        send_discord_notification(article_data, category)
+        time.sleep(0.5)  # rate limit 방지
+else:
+    print(f"\n✨ 새 글 없음")
+
+# ==========================================
+# 4. JSON 파일로 저장
 # ==========================================
 output = {
     "updated_at": datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ"),
@@ -167,7 +220,6 @@ output = {
 with open("articles.json", "w", encoding="utf-8") as f:
     json.dump(output, f, ensure_ascii=False, indent=2)
 
-# 콘솔에 분류 결과 출력
 print(f"\n📊 카테고리별 분류 결과:")
 for category, items in categorized.items():
     print(f"  - {category}: {len(items)}개")

@@ -25,6 +25,8 @@ jobs:
         run: pip install selenium webdriver-manager
 
       - name: 크롤러 실행
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
         run: python NaverBlogCrawler.py
 
       - name: JSON 파일 GitHub에 커밋
