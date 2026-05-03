@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-05-03T12:13:44Z",
+  "updated_at": "2026-05-03T12:28:45Z",
   "start_date": "2026.04.01.",
   "total": 32,
   "categories": {
@@ -85,10 +85,34 @@
         "link": "https://cafe.naver.com/f-e/cafes/22694512/articles/28111?boardtype=L&menuid=111&referrerAllArticles=false&page=1"
       },
       {
+        "title": "'창업자를 위한 알기 쉬운 스타트업 설립과 운영' 1기 수강 신청 안내",
+        "author": "청강대 산학취업처",
+        "date": "2026.04.23.",
+        "link": "https://cafe.naver.com/f-e/cafes/22694512/articles/28103?boardtype=L&menuid=111&referrerAllArticles=false&page=1"
+      },
+      {
         "title": "가스라이팅/데이트폭력/비동의 성관계/BDSM/성병/피임 <비교과 오픈>",
         "author": "학생상담센터",
         "date": "2026.04.21.",
         "link": "https://cafe.naver.com/f-e/cafes/22694512/articles/28099?boardtype=L&menuid=111&referrerAllArticles=false&page=1"
+      },
+      {
+        "title": "[혁신지원사업단] 전공 간 융복합 콘텐츠 제작 프로젝트 💫 공모전 안내",
+        "author": "혁신지원사업단 2",
+        "date": "2026.04.20.",
+        "link": "https://cafe.naver.com/f-e/cafes/22694512/articles/28098?boardtype=L&menuid=111&referrerAllArticles=false&page=1"
+      },
+      {
+        "title": "[청강대] 2026년 청년 예비 창업자 발굴 및 육성 사업 안내",
+        "author": "청강대 산학취업처",
+        "date": "2026.04.16.",
+        "link": "https://cafe.naver.com/f-e/cafes/22694512/articles/28096?boardtype=L&menuid=111&referrerAllArticles=false&page=1"
+      },
+      {
+        "title": "[만화도서관] 내 취향이 만도에 쏙! 「나를 닮은 책장」 신청 안내",
+        "author": "만화도서관",
+        "date": "2026.04.15.",
+        "link": "https://cafe.naver.com/f-e/cafes/22694512/articles/28092?boardtype=L&menuid=111&referrerAllArticles=false&page=1"
       },
       {
         "title": "[특강] 2026학년도 비교과 프로그램 자격증 특강 (라떼아트)☕",
@@ -115,6 +139,12 @@
         "link": "https://cafe.naver.com/f-e/cafes/22694512/articles/28084?boardtype=L&menuid=111&referrerAllArticles=false&page=1"
       },
       {
+        "title": "[공유] 2026학년도 학생증 발급 신청 안내",
+        "author": "학생팀",
+        "date": "2026.04.07.",
+        "link": "https://cafe.naver.com/f-e/cafes/22694512/articles/28079?boardtype=L&menuid=111&referrerAllArticles=false&page=2"
+      },
+      {
         "title": "2026년 경기청년 해외 취창업 기회 확충사업 참여자 모집 공고 안내.",
         "author": "청강대 산학취업처",
         "date": "2026.04.01.",
@@ -135,12 +165,6 @@
         "link": "https://cafe.naver.com/f-e/cafes/22694512/articles/28113?boardtype=L&menuid=111&referrerAllArticles=false&page=1"
       },
       {
-        "title": "[혁신지원사업단] 전공 간 융복합 콘텐츠 제작 프로젝트 💫 공모전 안내",
-        "author": "혁신지원사업단 2",
-        "date": "2026.04.20.",
-        "link": "https://cafe.naver.com/f-e/cafes/22694512/articles/28098?boardtype=L&menuid=111&referrerAllArticles=false&page=1"
-      },
-      {
         "title": "📢 HUSS 글로벌·문화 컨소시엄 캐릭터 설정 공모전 안내",
         "author": "산학협력단1",
         "date": "2026.04.17.",
@@ -155,34 +179,10 @@
     ],
     "안내글": [
       {
-        "title": "'창업자를 위한 알기 쉬운 스타트업 설립과 운영' 1기 수강 신청 안내",
-        "author": "청강대 산학취업처",
-        "date": "2026.04.23.",
-        "link": "https://cafe.naver.com/f-e/cafes/22694512/articles/28103?boardtype=L&menuid=111&referrerAllArticles=false&page=1"
-      },
-      {
-        "title": "[청강대] 2026년 청년 예비 창업자 발굴 및 육성 사업 안내",
-        "author": "청강대 산학취업처",
-        "date": "2026.04.16.",
-        "link": "https://cafe.naver.com/f-e/cafes/22694512/articles/28096?boardtype=L&menuid=111&referrerAllArticles=false&page=1"
-      },
-      {
-        "title": "[만화도서관] 내 취향이 만도에 쏙! 「나를 닮은 책장」 신청 안내",
-        "author": "만화도서관",
-        "date": "2026.04.15.",
-        "link": "https://cafe.naver.com/f-e/cafes/22694512/articles/28092?boardtype=L&menuid=111&referrerAllArticles=false&page=1"
-      },
-      {
         "title": "[홍보] CKAIFF 행사(4/22 ~ 4/23) 안내",
         "author": "게임 21 양선우",
         "date": "2026.04.08.",
         "link": "https://cafe.naver.com/f-e/cafes/22694512/articles/28082?boardtype=L&menuid=111&referrerAllArticles=false&page=2"
-      },
-      {
-        "title": "[공유] 2026학년도 학생증 발급 신청 안내",
-        "author": "학생팀",
-        "date": "2026.04.07.",
-        "link": "https://cafe.naver.com/f-e/cafes/22694512/articles/28079?boardtype=L&menuid=111&referrerAllArticles=false&page=2"
       }
     ],
     "이벤트": [
