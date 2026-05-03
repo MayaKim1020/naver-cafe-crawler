@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-05-03T12:28:45Z",
+  "updated_at": "2026-05-03T12:40:19Z",
   "start_date": "2026.04.01.",
   "total": 32,
   "categories": {
@@ -71,6 +71,32 @@
         "link": "https://cafe.naver.com/f-e/cafes/22694512/articles/27170?boardtype=L&menuid=111&referrerAllArticles=false&page=1"
       }
     ],
+    "공모전": [
+      {
+        "title": "[홍보] \"그려, 봄\" 디지털 드로잉 공모전",
+        "author": "행정실 김수민",
+        "date": "2026.04.30.",
+        "link": "https://cafe.naver.com/f-e/cafes/22694512/articles/28113?boardtype=L&menuid=111&referrerAllArticles=false&page=1"
+      },
+      {
+        "title": "[혁신지원사업단] 전공 간 융복합 콘텐츠 제작 프로젝트 💫 공모전 안내",
+        "author": "혁신지원사업단 2",
+        "date": "2026.04.20.",
+        "link": "https://cafe.naver.com/f-e/cafes/22694512/articles/28098?boardtype=L&menuid=111&referrerAllArticles=false&page=1"
+      },
+      {
+        "title": "📢 HUSS 글로벌·문화 컨소시엄 캐릭터 설정 공모전 안내",
+        "author": "산학협력단1",
+        "date": "2026.04.17.",
+        "link": "https://cafe.naver.com/f-e/cafes/22694512/articles/28097?boardtype=L&menuid=111&referrerAllArticles=false&page=1"
+      },
+      {
+        "title": "📢 HUSS 글로벌·문화 컨소시엄 캐릭터 설정 공모전 안내",
+        "author": "산학협력단1",
+        "date": "2026.04.06.",
+        "link": "https://cafe.naver.com/f-e/cafes/22694512/articles/28076?boardtype=L&menuid=111&referrerAllArticles=false&page=2"
+      }
+    ],
     "신청글": [
       {
         "title": "[공유] 2026학년도 청강봉사단 글로벌 봉사활동 참가자 모집",
@@ -95,12 +121,6 @@
         "author": "학생상담센터",
         "date": "2026.04.21.",
         "link": "https://cafe.naver.com/f-e/cafes/22694512/articles/28099?boardtype=L&menuid=111&referrerAllArticles=false&page=1"
-      },
-      {
-        "title": "[혁신지원사업단] 전공 간 융복합 콘텐츠 제작 프로젝트 💫 공모전 안내",
-        "author": "혁신지원사업단 2",
-        "date": "2026.04.20.",
-        "link": "https://cafe.naver.com/f-e/cafes/22694512/articles/28098?boardtype=L&menuid=111&referrerAllArticles=false&page=1"
       },
       {
         "title": "[청강대] 2026년 청년 예비 창업자 발굴 및 육성 사업 안내",
@@ -157,40 +177,20 @@
         "link": "https://cafe.naver.com/f-e/cafes/22694512/articles/28047?boardtype=L&menuid=111&referrerAllArticles=false&page=2"
       }
     ],
-    "공모전": [
-      {
-        "title": "[홍보] \"그려, 봄\" 디지털 드로잉 공모전",
-        "author": "행정실 김수민",
-        "date": "2026.04.30.",
-        "link": "https://cafe.naver.com/f-e/cafes/22694512/articles/28113?boardtype=L&menuid=111&referrerAllArticles=false&page=1"
-      },
-      {
-        "title": "📢 HUSS 글로벌·문화 컨소시엄 캐릭터 설정 공모전 안내",
-        "author": "산학협력단1",
-        "date": "2026.04.17.",
-        "link": "https://cafe.naver.com/f-e/cafes/22694512/articles/28097?boardtype=L&menuid=111&referrerAllArticles=false&page=1"
-      },
-      {
-        "title": "📢 HUSS 글로벌·문화 컨소시엄 캐릭터 설정 공모전 안내",
-        "author": "산학협력단1",
-        "date": "2026.04.06.",
-        "link": "https://cafe.naver.com/f-e/cafes/22694512/articles/28076?boardtype=L&menuid=111&referrerAllArticles=false&page=2"
-      }
-    ],
-    "안내글": [
-      {
-        "title": "[홍보] CKAIFF 행사(4/22 ~ 4/23) 안내",
-        "author": "게임 21 양선우",
-        "date": "2026.04.08.",
-        "link": "https://cafe.naver.com/f-e/cafes/22694512/articles/28082?boardtype=L&menuid=111&referrerAllArticles=false&page=2"
-      }
-    ],
     "이벤트": [
       {
         "title": "[도서관] 2026-1학기 도서관 도서 대출 이벤트!",
         "author": "도서관2",
         "date": "2026.04.21.",
         "link": "https://cafe.naver.com/f-e/cafes/22694512/articles/28100?boardtype=L&menuid=111&referrerAllArticles=false&page=1"
+      }
+    ],
+    "홍보/안내": [
+      {
+        "title": "[홍보] CKAIFF 행사(4/22 ~ 4/23) 안내",
+        "author": "게임 21 양선우",
+        "date": "2026.04.08.",
+        "link": "https://cafe.naver.com/f-e/cafes/22694512/articles/28082?boardtype=L&menuid=111&referrerAllArticles=false&page=2"
       }
     ],
     "기타": [
