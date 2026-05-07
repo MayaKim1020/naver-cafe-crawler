@@ -6,20 +6,26 @@ from webdriver_manager.chrome import ChromeDriverManager
 import time
 import json
 import os
+import re
 import requests
 from datetime import datetime
+
+# Firebase
+import firebase_admin
+from firebase_admin import credentials, firestore
 
 # ==========================================
 # ⚙️ 설정값
 # ==========================================
-START_DATE = "2026.04.01."  # 이 날짜 이후 글만 수집 (포함)
-MAX_ARTICLES = 50           # 최대 수집 개수
-MAX_PAGES = 10              # 최대 탐색 페이지 (안전장치)
+START_DATE = "2026.04.01."
+MAX_ARTICLES = 50
+MAX_PAGES = 10
 
 DISCORD_WEBHOOK_URL = os.environ.get("DISCORD_WEBHOOK_URL")
+FIREBASE_CREDENTIALS = os.environ.get("FIREBASE_CREDENTIALS")
 
 # ==========================================
-# 카테고리 분류 규칙 (위에서부터 우선순위)
+# 카테고리 분류 규칙
 # ==========================================
 CATEGORY_RULES = [
     ("공모전", ["공모전"]),
@@ -33,7 +39,6 @@ CATEGORY_RULES = [
 GUIDE_KEYWORDS = ["안내", "홍보", "행사"]
 
 def classify(title, is_notice):
-    """제목과 공지 여부로 카테고리 분류"""
     if is_notice:
         return "공지글"
     for category, keywords in CATEGORY_RULES:
@@ -52,25 +57,32 @@ def parse_date(date_str):
     except:
         return None
 
+def normalize_link(link):
+    """링크에서 page 파라미터 제거"""
+    return re.sub(r'[?&]page=\d+', '', link)
+
 START_DATETIME = parse_date(START_DATE)
 
 # ==========================================
-# 링크 정규화 (페이지 정보 제거)
-# 같은 글인데 page=1, page=2로 다르게 저장되는 문제 해결
+# Firebase 초기화
 # ==========================================
-import re
-
-def normalize_link(link):
-    """링크에서 page 파라미터를 제거해 같은 글을 같은 키로 만듦"""
-    # &page=N 또는 ?page=N 부분을 제거
-    cleaned = re.sub(r'[?&]page=\d+', '', link)
-    return cleaned
+db = None
+if FIREBASE_CREDENTIALS:
+    try:
+        cred_dict = json.loads(FIREBASE_CREDENTIALS)
+        cred = credentials.Certificate(cred_dict)
+        firebase_admin.initialize_app(cred)
+        db = firestore.client()
+        print("🔥 Firebase 연결 성공")
+    except Exception as e:
+        print(f"❌ Firebase 연결 실패: {e}")
+else:
+    print("⚠️ FIREBASE_CREDENTIALS가 설정되지 않음")
 
 # ==========================================
 # 디스코드 알림 함수
 # ==========================================
 def send_discord_notification(article, category):
-    """새 글 알림을 디스코드로 전송"""
     if not DISCORD_WEBHOOK_URL:
         print("⚠️ DISCORD_WEBHOOK_URL이 설정되지 않아 알림 생략")
         return
@@ -89,21 +101,25 @@ def send_discord_notification(article, category):
         print(f"❌ 디스코드 전송 실패: {e}")
 
 # ==========================================
-# 이전 글 목록 불러오기 (link 집합)
+# Firestore에서 이전 글 목록 불러오기
 # ==========================================
 previous_links = set()
-if os.path.exists("articles.json"):
+is_first_run = True
+
+if db:
     try:
-        with open("articles.json", "r", encoding="utf-8") as f:
-            prev_data = json.load(f)
-            for category_articles in prev_data.get("categories", {}).values():
-                for article in category_articles:
-                    previous_links.add(normalize_link(article["link"]))
-        print(f"📂 이전 글 {len(previous_links)}개 로드 완료")
+        articles_ref = db.collection("articles").stream()
+        for doc in articles_ref:
+            data = doc.to_dict()
+            for article in data.get("items", []):
+                previous_links.add(normalize_link(article["link"]))
+        if previous_links:
+            is_first_run = False
+            print(f"📂 Firestore에서 이전 글 {len(previous_links)}개 로드 완료")
+        else:
+            print("📂 Firestore에 이전 데이터 없음 (최초 실행)")
     except Exception as e:
-        print(f"⚠️ 이전 글 로드 실패: {e}")
-else:
-    print("📂 이전 글 데이터 없음 (최초 실행)")
+        print(f"⚠️ Firestore 로드 실패: {e}")
 
 # ==========================================
 # 1. 크롬 브라우저 세팅 (headless 모드)
@@ -131,12 +147,9 @@ categorized = {
     "기타": []
 }
 
-# 새 글들을 (article, category) 튜플 형태로 저장
 new_articles = []
-
 total_collected = 0
 should_stop = False
-is_first_run = (len(previous_links) == 0)  # 최초 실행 여부
 
 for page in range(1, MAX_PAGES + 1):
     if should_stop or total_collected >= MAX_ARTICLES:
@@ -200,10 +213,8 @@ for page in range(1, MAX_PAGES + 1):
         categorized[category].append(article_data)
         total_collected += 1
 
-        # ⭐ 새 글 감지: 이전 목록에 없고, 최근(오늘/어제) 작성된 글만
-        # (페이지 파라미터 제거한 링크로 비교)
+        # ⭐ 새 글 감지 (페이지 파라미터 제거 + 최근 2일 이내)
         if normalize_link(link) not in previous_links:
-            # 작성일이 오늘 또는 어제여야 진짜 "새 글"로 판단
             today = datetime.now().date()
             if article_date and (today - article_date.date()).days <= 1:
                 new_articles.append((article_data, category))
@@ -222,12 +233,41 @@ elif new_articles:
     print(f"\n🆕 새 글 {len(new_articles)}개 발견! 디스코드 알림 전송 중...")
     for article_data, category in new_articles:
         send_discord_notification(article_data, category)
-        time.sleep(0.5)  # rate limit 방지
+        time.sleep(0.5)
 else:
     print(f"\n✨ 새 글 없음")
 
 # ==========================================
-# 4. JSON 파일로 저장
+# 4. Firestore에 저장
+# ==========================================
+if db:
+    try:
+        # articles 컬렉션 - 카테고리별 문서로 저장
+        for category, items in categorized.items():
+            db.collection("articles").document(category).set({
+                "items": items,
+                "count": len(items),
+                "updated_at": firestore.SERVER_TIMESTAMP
+            })
+
+        # metadata 컬렉션 - 전체 상태 저장
+        db.collection("metadata").document("status").set({
+            "updated_at": firestore.SERVER_TIMESTAMP,
+            "start_date": START_DATE,
+            "total": total_collected
+        })
+
+        print(f"\n🔥 Firestore 저장 완료")
+    except Exception as e:
+        print(f"❌ Firestore 저장 실패: {e}")
+
+# 콘솔에 분류 결과 출력
+print(f"\n📊 카테고리별 분류 결과:")
+for category, items in categorized.items():
+    print(f"  - {category}: {len(items)}개")
+
+# ==========================================
+# 5. (선택) 백업용 JSON 파일도 저장
 # ==========================================
 output = {
     "updated_at": datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ"),
@@ -239,7 +279,4 @@ output = {
 with open("articles.json", "w", encoding="utf-8") as f:
     json.dump(output, f, ensure_ascii=False, indent=2)
 
-print(f"\n📊 카테고리별 분류 결과:")
-for category, items in categorized.items():
-    print(f"  - {category}: {len(items)}개")
-print(f"\n✅ articles.json 저장 완료")
+print(f"\n✅ articles.json 백업 저장 완료")
