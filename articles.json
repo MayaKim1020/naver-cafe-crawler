@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-05-07T03:06:18Z",
+  "updated_at": "2026-05-07T03:15:17Z",
   "start_date": "2026.04.01.",
   "total": 33,
   "categories": {
@@ -191,7 +191,7 @@
         "link": "https://cafe.naver.com/f-e/cafes/22694512/articles/28100?boardtype=L&menuid=111&referrerAllArticles=false&page=1"
       }
     ],
-    "홍보/안내": [
+    "홍보_안내": [
       {
         "title": "[홍보] CKAIFF 행사(4/22 ~ 4/23) 안내",
         "author": "게임 21 양선우",
