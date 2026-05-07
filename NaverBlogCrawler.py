@@ -55,6 +55,18 @@ def parse_date(date_str):
 START_DATETIME = parse_date(START_DATE)
 
 # ==========================================
+# 링크 정규화 (페이지 정보 제거)
+# 같은 글인데 page=1, page=2로 다르게 저장되는 문제 해결
+# ==========================================
+import re
+
+def normalize_link(link):
+    """링크에서 page 파라미터를 제거해 같은 글을 같은 키로 만듦"""
+    # &page=N 또는 ?page=N 부분을 제거
+    cleaned = re.sub(r'[?&]page=\d+', '', link)
+    return cleaned
+
+# ==========================================
 # 디스코드 알림 함수
 # ==========================================
 def send_discord_notification(article, category):
@@ -86,7 +98,7 @@ if os.path.exists("articles.json"):
             prev_data = json.load(f)
             for category_articles in prev_data.get("categories", {}).values():
                 for article in category_articles:
-                    previous_links.add(article["link"])
+                    previous_links.add(normalize_link(article["link"]))
         print(f"📂 이전 글 {len(previous_links)}개 로드 완료")
     except Exception as e:
         print(f"⚠️ 이전 글 로드 실패: {e}")
@@ -188,9 +200,15 @@ for page in range(1, MAX_PAGES + 1):
         categorized[category].append(article_data)
         total_collected += 1
 
-        # ⭐ 새 글 감지: 이전 목록에 없으면 새 글
-        if link not in previous_links:
-            new_articles.append((article_data, category))
+        # ⭐ 새 글 감지: 이전 목록에 없고, 최근(오늘/어제) 작성된 글만
+        # (페이지 파라미터 제거한 링크로 비교)
+        if normalize_link(link) not in previous_links:
+            # 작성일이 오늘 또는 어제여야 진짜 "새 글"로 판단
+            today = datetime.now().date()
+            if article_date and (today - article_date.date()).days <= 1:
+                new_articles.append((article_data, category))
+            else:
+                print(f"⏭️ 새 링크지만 오래된 글이라 알림 제외: {title} ({date})")
 
 driver.quit()
 print(f"\n✅ 브라우저 종료 완료 (총 {total_collected}개 수집)")
