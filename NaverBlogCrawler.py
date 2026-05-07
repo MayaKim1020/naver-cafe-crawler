@@ -47,7 +47,7 @@ def classify(title, is_notice):
                 return category
     for keyword in GUIDE_KEYWORDS:
         if keyword in title:
-            return "홍보/안내"
+            return "홍보_안내"
     return "기타"
 
 def parse_date(date_str):
@@ -143,7 +143,7 @@ categorized = {
     "공모전": [],
     "신청글": [],
     "이벤트": [],
-    "홍보/안내": [],
+    "홍보_안내": [],
     "기타": []
 }
 
