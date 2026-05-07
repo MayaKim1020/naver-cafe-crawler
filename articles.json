@@ -1,7 +1,7 @@
 {
-  "updated_at": "2026-05-06T23:43:43Z",
+  "updated_at": "2026-05-07T02:12:50Z",
   "start_date": "2026.04.01.",
-  "total": 32,
+  "total": 33,
   "categories": {
     "공지글": [
       {
@@ -99,6 +99,12 @@
     ],
     "신청글": [
       {
+        "title": "📢 HUSS하계 계절학기 수강신청 안내",
+        "author": "산학협력단1",
+        "date": "09:58",
+        "link": "https://cafe.naver.com/f-e/cafes/22694512/articles/28118?boardtype=L&menuid=111&referrerAllArticles=false&page=1"
+      },
+      {
         "title": "[공유] 2026학년도 청강봉사단 글로벌 봉사활동 참가자 모집",
         "author": "학생팀",
         "date": "2026.04.30.",
@@ -156,7 +162,7 @@
         "title": "[홍보] 🍴 2026년 4월 월간푸드스쿨 프로그램 안내 💫",
         "author": "행정실 김수민",
         "date": "2026.04.09.",
-        "link": "https://cafe.naver.com/f-e/cafes/22694512/articles/28084?boardtype=L&menuid=111&referrerAllArticles=false&page=1"
+        "link": "https://cafe.naver.com/f-e/cafes/22694512/articles/28084?boardtype=L&menuid=111&referrerAllArticles=false&page=2"
       },
       {
         "title": "[공유] 2026학년도 학생증 발급 신청 안내",
