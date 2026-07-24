@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-07-24T22:56:02Z",
+  "updated_at": "2026-07-24T23:58:18Z",
   "cutoff_date": "2026-01-01",
   "total": 142,
   "categories": {
@@ -13,6 +13,11 @@
         "title": "학적처리에 관한 규정 개정(안)에 대한 의견 수렴",
         "date": "2026-07-21",
         "link": "https://www.ck.ac.kr/archives/235062"
+      },
+      {
+        "title": "진로탐색학점제 운영 규정 개정(안) 의견 수렴",
+        "date": "2026-07-21",
+        "link": "https://www.ck.ac.kr/archives/235058"
       },
       {
         "title": "KOREA–FINLAND ESPORTS FESTIVAL 개최 안내",
@@ -248,11 +253,6 @@
         "title": "공인자격 도로교통사고감정사 자격검정 안내",
         "date": "2026-04-09",
         "link": "https://www.ck.ac.kr/archives/230875"
-      },
-      {
-        "title": "경기도 기후행동 기회소득 사업 안내",
-        "date": "2026-04-08",
-        "link": "https://www.ck.ac.kr/archives/230845"
       }
     ],
     "학사공지": [
