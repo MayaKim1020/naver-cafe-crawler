@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-09T23:30:54Z",
+  "updated_at": "2026-08-10T01:11:01Z",
   "cutoff_date": "2026-01-01",
   "total": 144,
   "categories": {
@@ -481,6 +481,11 @@
     ],
     "취창업공지": [
       {
+        "title": "제3차 장애인 창업사업화 지원사업 대자 모집 공고",
+        "date": "2026-08-10",
+        "link": "https://www.ck.ac.kr/archives/235730"
+      },
+      {
         "title": "AI 시대를 대비하는 게임 취업 트렌드 토크쇼 개최 (8/6)",
         "date": "2026-08-03",
         "link": "https://www.ck.ac.kr/archives/235424"
@@ -724,11 +729,6 @@
         "title": "이력서 & 자기소개서 작성법 특강",
         "date": "2026-01-26",
         "link": "https://www.ck.ac.kr/archives/227788"
-      },
-      {
-        "title": "포트폴리오 기초 특강 (일러스트레이터 분야)",
-        "date": "2026-01-26",
-        "link": "https://www.ck.ac.kr/archives/227782"
       }
     ]
   }
