@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-10T08:22:41Z",
+  "updated_at": "2026-08-10T09:55:46Z",
   "cutoff_date": "2026-01-01",
   "total": 144,
   "categories": {
@@ -481,6 +481,11 @@
     ],
     "취창업공지": [
       {
+        "title": "2학기 학기제 현장실습 안내",
+        "date": "2026-08-10",
+        "link": "https://www.ck.ac.kr/archives/235815"
+      },
+      {
         "title": "제3차 장애인 창업사업화 지원사업 대자 모집 공고",
         "date": "2026-08-10",
         "link": "https://www.ck.ac.kr/archives/235730"
@@ -724,11 +729,6 @@
         "title": "졸업생 및 학부모 환영! 취업 상담 프로그램 안내",
         "date": "2026-02-04",
         "link": "https://www.ck.ac.kr/archives/228132"
-      },
-      {
-        "title": "이력서 & 자기소개서 작성법 특강",
-        "date": "2026-01-26",
-        "link": "https://www.ck.ac.kr/archives/227788"
       }
     ]
   }
