@@ -1,9 +1,14 @@
 {
-  "updated_at": "2026-08-11T04:49:42Z",
+  "updated_at": "2026-08-11T05:50:21Z",
   "cutoff_date": "2026-01-01",
   "total": 146,
   "categories": {
     "일반공지": [
+      {
+        "title": "2학기 재학생 등록금 납부 안내",
+        "date": "2026-08-11",
+        "link": "https://www.ck.ac.kr/archives/235845"
+      },
       {
         "title": "AI 시대를 대비하는 게임 취업 트렌드 토크쇼 개최 (8/6)",
         "date": "2026-08-03",
@@ -248,11 +253,6 @@
         "title": "경기도「 1차 매입임대 예비입주자 모집공고」",
         "date": "2026-04-13",
         "link": "https://www.ck.ac.kr/archives/230893"
-      },
-      {
-        "title": "공인자격 도로교통사고감정사 자격검정 안내",
-        "date": "2026-04-09",
-        "link": "https://www.ck.ac.kr/archives/230875"
       }
     ],
     "학사공지": [
