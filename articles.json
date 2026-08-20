@@ -1,9 +1,14 @@
 {
-  "updated_at": "2026-08-19T23:44:40Z",
+  "updated_at": "2026-08-20T00:49:55Z",
   "cutoff_date": "2026-01-01",
   "total": 150,
   "categories": {
     "일반공지": [
+      {
+        "title": "진입로 보행로 공사로 인한 통행 제한 안내",
+        "date": "2026-08-20",
+        "link": "https://www.ck.ac.kr/archives/236304"
+      },
       {
         "title": "2학기 재학생 등록금 납부 안내",
         "date": "2026-08-11",
@@ -248,23 +253,18 @@
         "title": "등록 동아리 현황",
         "date": "2026-04-13",
         "link": "https://www.ck.ac.kr/archives/230906"
-      },
-      {
-        "title": "경기도「 1차 매입임대 예비입주자 모집공고」",
-        "date": "2026-04-13",
-        "link": "https://www.ck.ac.kr/archives/230893"
       }
     ],
     "학사공지": [
       {
+        "title": "2학기 혁신전공 신규 교과목 안내 (비교과 연계 프로젝트 포함)",
+        "date": "2026-08-20",
+        "link": "https://www.ck.ac.kr/archives/236302"
+      },
+      {
         "title": "다전공(부전공·복수전공) 이수구분 표기 변경 안내",
         "date": "2026-08-19",
         "link": "https://www.ck.ac.kr/archives/236211"
-      },
-      {
-        "title": "2학기 혁신전공 신규 교과목 안내 (비교과 연계 프로그램 포함)",
-        "date": "2026-08-18",
-        "link": "https://www.ck.ac.kr/archives/236055"
       },
       {
         "title": "2학기 자율설계학점제(구 진로탐색학점제) 모집 안내",
