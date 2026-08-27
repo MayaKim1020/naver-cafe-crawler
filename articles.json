@@ -1,9 +1,14 @@
 {
-  "updated_at": "2026-08-27T06:33:51Z",
+  "updated_at": "2026-08-27T18:01:19Z",
   "cutoff_date": "2026-01-01",
-  "total": 155,
+  "total": 154,
   "categories": {
     "일반공지": [
+      {
+        "title": "2학기 통학버스 개선사항 안내",
+        "date": "2026-08-27",
+        "link": "https://www.ck.ac.kr/archives/236534"
+      },
       {
         "title": "씨네별 9월 영화 상영 프로그램 및 퀴즈 안내",
         "date": "2026-08-27",
@@ -18,6 +23,11 @@
         "title": "2학기 재학생 등록금 납부 안내",
         "date": "2026-08-11",
         "link": "https://www.ck.ac.kr/archives/235845"
+      },
+      {
+        "title": "2학기 RISE 학점교류 교과목 수강신청 안내",
+        "date": "2026-08-05",
+        "link": "https://www.ck.ac.kr/archives/235567"
       },
       {
         "title": "AI 시대를 대비하는 게임 취업 트렌드 토크쇼 개최 (8/6)",
@@ -243,16 +253,6 @@
         "title": "전문대학 혁신지원사업 숏폼 영상 콘텐츠 공모전",
         "date": "2026-04-21",
         "link": "https://www.ck.ac.kr/archives/231251"
-      },
-      {
-        "title": "“전공 간 융복합 콘텐츠 제작 프로젝트” 개최 안내",
-        "date": "2026-04-20",
-        "link": "https://www.ck.ac.kr/archives/231194"
-      },
-      {
-        "title": "청년 예비 창업자 발굴 및 육성 사업 안내",
-        "date": "2026-04-14",
-        "link": "https://www.ck.ac.kr/archives/230936"
       }
     ],
     "학사공지": [
@@ -285,11 +285,6 @@
         "title": "제29회 학위수여식(후기) 안내",
         "date": "2026-08-12",
         "link": "https://www.ck.ac.kr/archives/235878"
-      },
-      {
-        "title": "2학기 RISE 학점교류 교과목 수강신청 안내",
-        "date": "2026-08-05",
-        "link": "https://www.ck.ac.kr/archives/235567"
       },
       {
         "title": "2학기 수강신청 안내",
