@@ -1,9 +1,19 @@
 {
-  "updated_at": "2026-08-28T02:14:43Z",
+  "updated_at": "2026-08-28T14:28:13Z",
   "cutoff_date": "2026-01-01",
   "total": 154,
   "categories": {
     "일반공지": [
+      {
+        "title": "2학기 천원의 아침밥 안내",
+        "date": "2026-08-28",
+        "link": "https://www.ck.ac.kr/archives/236680"
+      },
+      {
+        "title": "교내 창업 아이디어 경진대회 안내",
+        "date": "2026-08-28",
+        "link": "https://www.ck.ac.kr/archives/236651"
+      },
       {
         "title": "2학기 통학버스 개선사항 안내",
         "date": "2026-08-27",
@@ -243,16 +253,6 @@
         "title": "제2회 청강 ‘동물’ 캐릭터 공모전",
         "date": "2026-04-23",
         "link": "https://www.ck.ac.kr/archives/231322"
-      },
-      {
-        "title": "대학평의원회운영규정 개정(안) 의견수렴",
-        "date": "2026-04-21",
-        "link": "https://www.ck.ac.kr/archives/231289"
-      },
-      {
-        "title": "전문대학 혁신지원사업 숏폼 영상 콘텐츠 공모전",
-        "date": "2026-04-21",
-        "link": "https://www.ck.ac.kr/archives/231251"
       }
     ],
     "학사공지": [
@@ -531,6 +531,11 @@
     ],
     "취창업공지": [
       {
+        "title": "교내 창업 아이디어 경진대회 안내",
+        "date": "2026-08-28",
+        "link": "https://www.ck.ac.kr/archives/236651"
+      },
+      {
         "title": "2학기 학기제 현장실습 안내",
         "date": "2026-08-10",
         "link": "https://www.ck.ac.kr/archives/235815"
@@ -774,11 +779,6 @@
         "title": "졸업생 및 학부모 환영! 취업 상담 프로그램 안내",
         "date": "2026-02-04",
         "link": "https://www.ck.ac.kr/archives/228132"
-      },
-      {
-        "title": "이력서 & 자기소개서 작성법 특강",
-        "date": "2026-01-26",
-        "link": "https://www.ck.ac.kr/archives/227788"
       }
     ]
   }
