@@ -1,9 +1,14 @@
 {
-  "updated_at": "2026-08-31T02:48:17Z",
+  "updated_at": "2026-08-31T09:10:46Z",
   "cutoff_date": "2026-01-01",
-  "total": 154,
+  "total": 155,
   "categories": {
     "일반공지": [
+      {
+        "title": "CK-혁신학생리포터 3기 모집 안내",
+        "date": "2026-08-31",
+        "link": "https://www.ck.ac.kr/archives/236708"
+      },
       {
         "title": "2학기 천원의 아침밥 안내",
         "date": "2026-08-28",
@@ -248,14 +253,14 @@
         "title": "HUSS 테이크오프 페스타 신청 안내",
         "date": "2026-04-28",
         "link": "https://www.ck.ac.kr/archives/231573"
-      },
-      {
-        "title": "제2회 청강 ‘동물’ 캐릭터 공모전",
-        "date": "2026-04-23",
-        "link": "https://www.ck.ac.kr/archives/231322"
       }
     ],
     "학사공지": [
+      {
+        "title": "2학기 자율설계학점제 참여 학생 선정 결과 안내",
+        "date": "2026-08-31",
+        "link": "https://www.ck.ac.kr/archives/236725"
+      },
       {
         "title": "2학기 학점인정 신청 예정 안내",
         "date": "2026-08-26",
