@@ -1,9 +1,14 @@
 {
-  "updated_at": "2026-09-01T23:43:14Z",
+  "updated_at": "2026-09-02T02:18:51Z",
   "cutoff_date": "2026-01-01",
   "total": 156,
   "categories": {
     "일반공지": [
+      {
+        "title": "9월 학습법 특강 : “AI로 완성하는 나만의 학습법” 안내",
+        "date": "2026-09-02",
+        "link": "https://www.ck.ac.kr/archives/236803"
+      },
       {
         "title": "CK-혁신학생리포터 3기 모집 안내",
         "date": "2026-08-31",
@@ -248,11 +253,6 @@
         "title": "씨네별 5월 영화 상영 프로그램 및 퀴즈 안내",
         "date": "2026-04-30",
         "link": "https://www.ck.ac.kr/archives/231768"
-      },
-      {
-        "title": "HUSS 테이크오프 페스타 신청 안내",
-        "date": "2026-04-28",
-        "link": "https://www.ck.ac.kr/archives/231573"
       }
     ],
     "학사공지": [
