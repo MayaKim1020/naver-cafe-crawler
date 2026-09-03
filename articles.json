@@ -1,9 +1,19 @@
 {
-  "updated_at": "2026-09-03T00:26:19Z",
+  "updated_at": "2026-09-03T04:50:20Z",
   "cutoff_date": "2026-01-01",
   "total": 156,
   "categories": {
     "일반공지": [
+      {
+        "title": "슬기로운 독방(讀房)생활(feat. 디지털 디톡스)",
+        "date": "2026-09-03",
+        "link": "https://www.ck.ac.kr/archives/236958"
+      },
+      {
+        "title": "“소재가 떨어졌습니다” 📌 창작 소재가 필요한 청강인이라면!",
+        "date": "2026-09-03",
+        "link": "https://www.ck.ac.kr/archives/236938"
+      },
       {
         "title": "9월 학습법 특강 : “AI로 완성하는 나만의 학습법” 안내",
         "date": "2026-09-02",
@@ -243,16 +253,6 @@
         "title": "경기청년 역량강화 기회지원 사업",
         "date": "2026-05-04",
         "link": "https://www.ck.ac.kr/archives/231875"
-      },
-      {
-        "title": "청강봉사단 프로그램 글로벌 봉사활동 참가자 모집",
-        "date": "2026-04-30",
-        "link": "https://www.ck.ac.kr/archives/231778"
-      },
-      {
-        "title": "씨네별 5월 영화 상영 프로그램 및 퀴즈 안내",
-        "date": "2026-04-30",
-        "link": "https://www.ck.ac.kr/archives/231768"
       }
     ],
     "학사공지": [
